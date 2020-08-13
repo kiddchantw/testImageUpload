@@ -26,14 +26,10 @@ Route::get('/image', function () {
 Route::post('upload', function (Request $request) {
     // dd("router upload"); ok
     // dd($request->all()); ok
- 
-    //m1 ok
-    // $request->image->store('images'.'public');
-    // return "uplaod done";
-
+    //m2 
     $image = $request->image;
     $filename = $image->getClientOriginalName();      //保留原檔名
-    $destinationPath = 'testUpload';  //設定路徑
+    $destinationPath = 'public';  //設定路徑
 
     // store the file
     $imagePath  = $image->storeAs("$destinationPath", $filename);
