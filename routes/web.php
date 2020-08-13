@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,28 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/image', function () {
+    return view('image');
+});
+
+Route::post('upload', function (Request $request) {
+    // dd("router upload"); ok
+    // dd($request->all()); ok
+ 
+    //m1 ok
+    // $request->image->store('images'.'public');
+    // return "uplaod done";
+
+    $image = $request->image;
+    $filename = $image->getClientOriginalName();      //保留原檔名
+    $destinationPath = 'testUpload';  //設定路徑
+
+    // store the file
+    $imagePath  = $image->storeAs("$destinationPath", $filename);
+    return $imagePath;
+});
+
+
+
