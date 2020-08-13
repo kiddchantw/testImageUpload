@@ -42,3 +42,7 @@ Route::post('upload', function (Request $request) {
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
